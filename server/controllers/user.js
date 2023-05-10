@@ -1,5 +1,5 @@
 const Users = require("../models/user.js");
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -35,24 +35,24 @@ const getAllUsers = async (_req, res) => {
 //   }
 // };
 
-// export const registerUser = async (req, res) => {
-//   const { fullname, email, password } = req.body;
-//   const hashedPassword = await bcrypt.hash(password, 10);
-//   try {
-//     const newUser = new Users({
-//       fullname: fullname,
-//       email: email,
-//       password: hashedPassword,
-//     });
-//     const result = await newUser.save();
-//     const { password, ...data } = result.toJSON();
-//     res.status(200).send(data);
-//   } catch (error) {
-//     res.status(500).send({ message: error });
-//   }
-// };
+const registerUser = async (req, res) => {
+  const { fullname, email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const newUser = new Users({
+      fullname: fullname,
+      email: email,
+      password: hashedPassword,
+    });
+    const result = await newUser.save();
+    const { password, ...data } = result.toJSON();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
 
-// export const makeAdmin = async (req, res) => {
+// const makeAdmin = async (req, res) => {
 //   const { id } = req.params;
 //   try {
 //     const user = await Users.findById(id);
@@ -64,7 +64,7 @@ const getAllUsers = async (_req, res) => {
 //   }
 // };
 
-// export const removeAdmin = async (req, res) => {
+// const removeAdmin = async (req, res) => {
 //   const { id } = req.params;
 //   try {
 //     const user = await Users.findById(id);
@@ -76,7 +76,7 @@ const getAllUsers = async (_req, res) => {
 //   }
 // };
 
-// export const loginUser = async (req, res) => {
+// const loginUser = async (req, res) => {
 //   const { email, password } = req.body;
 //   try {
 //     const user = await Users.findOne({ email: email });
@@ -97,7 +97,7 @@ const getAllUsers = async (_req, res) => {
 //   }
 // };
 
-// export const authUser = async (req, res) => {
+// const authUser = async (req, res) => {
 //   try {
 //     const cookie = req.cookies["jwt"];
 //     const claims = verify(cookie, process.env.SECRET_KEY);
@@ -112,4 +112,4 @@ const getAllUsers = async (_req, res) => {
 //   }
 // };
 
-module.exports = { getAllUsers: getAllUsers };
+module.exports = { getAllUsers: getAllUsers, registerUser: registerUser };
