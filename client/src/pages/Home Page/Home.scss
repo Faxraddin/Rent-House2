@@ -1,0 +1,66 @@
+.Home1{
+    width:75%;
+    display:flex;
+    padding:4vw 0 4vw 0;
+    flex-direction: column;
+    margin-bottom: 4vw;
+
+    h2{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 70px;
+        line-height: 129%;
+        font-size: 4vw;
+    }
+
+    .search{
+        background: #FFFFFF;
+        border-radius: 20px;
+        background: white;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 50vw;
+        
+        .choice{
+            height: 4vw;
+            padding: 1vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 25%;
+
+            .choice-con{
+                padding-left: 1vw;
+                height: 100%;
+                width: 9vw;
+                display: flex;
+                align-items: center;
+                .c{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                }
+            }
+        }
+
+        button{
+            width:25%;
+            background: #4F23FF;
+            font-size:1vw;
+            padding:.5vw 1.4vw .5vw 1.4vw;
+            border-radius:30px;
+            border:thin solid;
+            color:white;
+            margin-right: 1vw;
+            height:3vw;
+        }
+    }
+}
+
+.place{
+    
+    margin: 0;
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import Box from "./Box";
+import Box from "../../components/HomeBox";
+import './Home.scss'
 
 export default function Home2(){
     return(
@@ -9,11 +10,11 @@ export default function Home2(){
 
                     <div style={{display:'flex',justifyContent:'space-between',width:'100%'}}>
                         <ui style={{display:'flex',listStyle:'none',gap:'4vw',alignItems:'center',fontSize:'1vw',color:'white'}}>
-                            <li style={{display:'flex',backgroundColor:'black',borderRadius:'25%',width:'6vw',height:'2vw',alignItems:'center',justifyContent:'center',textAlign:'center',padding:'0 .7vw 0vw .7vw'}}>All</li>
-                            <li style={{display:'flex',backgroundColor:'grey',borderRadius:'25%',width:'6vw',height:'2vw',alignItems:'center',justifyContent:'center',textAlign:'center',padding:'0 .7vw 0vw .7vw'}}>Building</li>
-                            <li style={{display:'flex',backgroundColor:'grey',borderRadius:'25%',width:'6vw',height:'2vw',alignItems:'center',justifyContent:'center',textAlign:'center',padding:'0 .7vw 0vw .7vw'}}>With Garden</li>
+                            <li style={{display:'flex',background: '#302D3F',borderRadius:'50px',width:'6vw',height:'2vw',alignItems:'center',justifyContent:'center',textAlign:'center',padding:'0 .7vw 0vw .7vw'}}>All</li>
+                            <li style={{display:'flex',backgroundColor:'#F0F0F0',borderRadius:'50px',width:'6vw',height:'2vw',alignItems:'center',justifyContent:'center',textAlign:'center',padding:'0 .7vw 0vw .7vw'}}>Building</li>
+                            <li style={{display:'flex',backgroundColor:'#F0F0F0',borderRadius:'50px',width:'6vw',height:'2vw',alignItems:'center',justifyContent:'center',textAlign:'center',padding:'0 .7vw 0vw .7vw'}}>With Garden</li>
                         </ui>
-                        <button style={{fontSize:'1vw',borderRadius:'25%',background:'none',border:'solid thin',padding:'.7vw 1vw .7vw 1vw',width:'15vw'}}>Search</button>
+                        <button style={{fontSize:'1vw',borderRadius:'50px',background:'none',border:'2px solid #AEAEAE',padding:'.7vw 1vw .7vw 1vw',width:'15vw'}}>Search</button>
                     </div>
                     <div style={{width:'100%',gap:'10%'}}>
                         <Box/>

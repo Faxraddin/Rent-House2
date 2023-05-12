@@ -1,17 +1,43 @@
 import React from "react";
+import './Home.scss'
 
 export default function Home1(){
     return(
         <>
             <div className="container" style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',backgroundColor:'lightgray'}}>
-                <div style={{width:'75%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'4vw 0 4vw 0'}}>
+                <div className={'Home1'}>
 
                     <div style={{color:'white'}}>
-                        <h2 style={{fontSize:'4vw'}}>Lorem ipsum <br></br> dolor sit amet <br></br> consectutar <br></br> adipsing elit</h2>
-                        <button style={{width:'7vw',background:'purple',fontSize:'1vw',padding:'.5vw 1.4vw .5vw 1.4vw',borderRadius:'25%',border:'thin solid',color:'white'}}>Start</button>
+                        <h2 className="text" h2>Lorem ipsum <br></br> dolor sit amet <br></br> consectutar <br></br> adipsing elit</h2>
                     </div>
-                    <div style={{position:'relative',top:'6vw',right:'5vw'}}>
-                        <input style={{borderRadius:'15%',border:'solid thin',padding:'1vw 1.3vw 1vw 1.3vw',width:'20vw'}} placeholder="Start"/>
+
+                    <div className='search' style={{display:'flex'}}>
+                        <div className="choice">
+                            <div className="choice-con">
+                                <div className="c">
+                                    <h3>Mekan</h3>
+                                    <span style={{position:'relative',top:'-1vw'}}>Rayon</span>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                        <div className="choice">
+                            <div  className="choice-con" style={{borderLeft: 'solid thin lightgrey'}}>
+                                <div >
+                                    <h3 >Eve koc</h3>
+                                    <span style={{position:'relative',top:'-1vw'}}>sec</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="choice">
+                            <div  className="choice-con" style={{borderLeft: 'solid thin lightgrey'}}>
+                                <div>
+                                    <h3>Muddet</h3>
+                                    <span style={{position:'relative',top:'-1vw'}}>sec</span>
+                                </div> 
+                            </div>
+                        </div>
+                        <button>Start</button>
                     </div>
 
                 </div>

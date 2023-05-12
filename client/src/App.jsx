@@ -6,8 +6,8 @@ import MainRoot from "./roots/MainRoot.jsx";
 import Home from "./pages/Home Page/Home";
 import AboutPage from './pages/About Page/About'
 import OpportunitiesPage from './pages/Opportunities Page/Opportunities'
-import LogIn from './pages/Sign Up and In/Login'
-import Register from './pages/Sign Up and In/Register'
+import LogIn from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   return (
