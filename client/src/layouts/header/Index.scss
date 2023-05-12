@@ -1,19 +1,16 @@
-.Navbar{
-    background: rgba(211, 211, 211, 0.2);
-    .Navpage{
-        text-decoration: none;
-        color: #FFFFFF;
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1.3vw;
-        line-height: 42px;
-        text-decoration: none;
-        
-
-       
-    }
-} 
+.Navbar {
+  background: rgba(211, 211, 211, 0.2);
+  .Navpage {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3vw;
+    line-height: 42px;
+    text-decoration: none;
+    } 
+}
 .active{
-            background: #4F23FF;
-        }
+        background: #4F23FF;
+}
