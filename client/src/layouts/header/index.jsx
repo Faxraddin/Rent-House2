@@ -12,9 +12,9 @@ const Header = () => {
                         <h2 style={{fontSize:'1.4vw'}}>Logo</h2>
                         <div>
                             <ul style={{display:'flex',listStyle:'none',gap:'3vw',alignItems:'center',fontSize:'1.3vw'}}>
-                                <NavLink className={'Navpage'} activeClassName="selected" to={'/'}>Home Page</NavLink>
-                                <NavLink className={'Navpage'} to={'/opportunities'}>Opportunities</NavLink>
-                                <NavLink className={'Navpage'} to={'/about'}>About</NavLink>
+                                <NavLink className={'Navpage'} activeClassName="active" to={'/'}>Home Page</NavLink>
+                                <NavLink className={'Navpage'} activeClassName="active" to={'/opportunities'}>Opportunities</NavLink>
+                                <NavLink className={'Navpage'} activeClassName="active" to={'/about'}>About</NavLink>
                                 <NavLink className={'Navpage'} to={'/forum'}>Forum</NavLink>
                                 <NavLink className={'Navpage'} to={'/owner'}>Apartment owner</NavLink>
                             </ul>
