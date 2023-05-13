@@ -8,6 +8,7 @@ import AboutPage from './pages/About Page/About'
 import OpportunitiesPage from './pages/Opportunities Page/Opportunities'
 import LogIn from './pages/Login'
 import Register from './pages/Register'
+import Forum from "./pages/Forum/Forum";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/login" element={<LogIn/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/forum" element={<Forum/>}/>
       </Route>
     </Routes>
   );

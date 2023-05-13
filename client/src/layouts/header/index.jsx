@@ -10,15 +10,17 @@ const Header = () => {
         style={{
           display: "flex",
           justifyContent: "center",
-          backgroundColor: "lightgrey",
+          backgroun: "rgba(211, 211, 211, 0.2);",
         }}
       >
         <div
           style={{
-            width: "90%",
+            width: "100%",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            paddingLeft:'50px',
+            paddingRight:'50px'
           }}
           className={"Navbar"}
         >
@@ -69,7 +71,7 @@ const Header = () => {
               background: "#4F23FF",
               border: "solid thin purple",
               padding: ".5vw .8vw .5vw .8vw",
-              fontSize: "1.3vw",
+              fontSize: "20px",
               textDecoration: "none",
               color: "white",
             }}

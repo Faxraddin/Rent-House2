@@ -26,6 +26,7 @@ export default function LogIn( ){
                 <NavLink to={'/register'} className="link-primary"  style={{cursor:'pointer',}}>
                   Sign Up
                 </NavLink>
+                
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group mt-3" style={{display:'flex',alignItems:'center',marginBottom:'.7vw',}}>

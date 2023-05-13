@@ -7,7 +7,7 @@ export default function Home1(){
             <div className="container" style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',backgroundColor:'lightgray'}}>
                 <div className={'Home1'}>
 
-                    <div style={{color:'white'}}>
+                    <div style={{color:'white',fontSize:'70px'}}>
                         <h2 className="text" h2>Lorem ipsum <br></br> dolor sit amet <br></br> consectutar <br></br> adipsing elit</h2>
                     </div>
 

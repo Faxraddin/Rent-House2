@@ -43,24 +43,32 @@
                     align-items: center;
                     flex-direction: column;
                 }
+
+                h3{
+                    font-size: 16px;
+                }
             }
         }
 
         button{
-            width:25%;
+            width:214px;
             background: #4F23FF;
-            font-size:1vw;
+            font-size:26px;
             padding:.5vw 1.4vw .5vw 1.4vw;
             border-radius:30px;
             border:thin solid;
             color:white;
             margin-right: 1vw;
-            height:3vw;
+            height:56px;
         }
     }
 }
 
 .place{
-    
     margin: 0;
+}
+
+.active1{
+    color: #4F23FF;
+    background: #FFFFFF;
 }
