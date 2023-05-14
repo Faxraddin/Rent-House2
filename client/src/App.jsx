@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home1 from "./pages/home";
 import MainRoot from "./roots/MainRoot.jsx";
 
 import Home from "./pages/Home Page/Home";
@@ -9,6 +8,7 @@ import OpportunitiesPage from './pages/Opportunities Page/Opportunities'
 import LogIn from './pages/Login'
 import Register from './pages/Register'
 import Forum from "./pages/Forum/Forum";
+import ApartmentOwner from "./pages/Apartment Owner/ApartmentOwner";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
           <Route path="/login" element={<LogIn/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/forum" element={<Forum/>}/>
+          <Route path="owner" element={<ApartmentOwner/>} />
       </Route>
     </Routes>
   );

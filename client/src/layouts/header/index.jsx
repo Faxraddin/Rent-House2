@@ -14,14 +14,6 @@ const Header = () => {
         }}
       >
         <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            paddingLeft:'50px',
-            paddingRight:'50px'
-          }}
           className={"Navbar"}
         >
           <div
@@ -31,15 +23,13 @@ const Header = () => {
               alignItems: "center",
             }}
           >
-            <h2 style={{ fontSize: "1.4vw" }}>Logo</h2>
+            <h2 style={{ fontSize: "1.5vw" }}>Logo</h2>
             <div>
               <ul
                 style={{
                   display: "flex",
-                  listStyle: "none",
                   gap: "3vw",
                   alignItems: "center",
-                  fontSize: "1.3vw",
                 }}
               >
                 <NavLink className={"Navpage"} to={"/"}>
