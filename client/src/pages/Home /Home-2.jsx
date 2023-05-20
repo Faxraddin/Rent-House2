@@ -1,6 +1,5 @@
 import React from "react";
 import Box from "../../components/HomeBox";
-import "./Home.scss";
 import { NavLink } from "react-router-dom";
 
 export default function Home2() {

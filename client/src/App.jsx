@@ -1,10 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import MainRoot from "./roots/MainRoot.jsx";
+import '../src/styles/main.scss'
 
-import Home from "./pages/Home Page/Home";
-import AboutPage from './pages/About Page/About'
-import OpportunitiesPage from './pages/Opportunities Page/Opportunities'
+import Home from "./pages/Home /Home.jsx";
+import AboutPage from './pages/About /About.jsx'
+import OpportunitiesPage from './pages/Opportunities /Opportunities.jsx'
 import LogIn from './pages/Login'
 import Register from './pages/Register'
 import Forum from "./pages/Forum/Forum";

@@ -1,6 +1,5 @@
 import React from "react";
 import ForumBox from "../../components/ForumBox";
-import "./Forum.scss";
 
 export default function Forum() {
   return (
