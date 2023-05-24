@@ -6,110 +6,88 @@ dotenv.config();
 
 const { sign, verify } = jwt;
 
-const getAllUsers = async (_req, res) => {
+const register = async (req, res) => {
   try {
-    const data = await Users.find();
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(500).send({ message: error });
-  }
-};
+    const { fullName,email, password } = req.body;
 
-// export const getUserById = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const data = await Users.findById(id);
-//     res.status(200).send(data);
-//   } catch (error) {
-//     res.status(500).send({ message: error });
-//   }
-// };
+    // Check if user with the provided email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
 
-// export const deleteUserById = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const data = await Users.findByIdAndDelete(id);
-//     res.status(200).send(data);
-//   } catch (error) {
-//     res.status(500).send({ message: error });
-//   }
-// };
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-const registerUser = async (req, res) => {
-  const { fullname, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  try {
-    const newUser = new Users({
-      fullname: fullname,
-      email: email,
+    // Create a new user
+    const newUser = new User({
+      fullName,
+      email,
       password: hashedPassword,
     });
-    const result = await newUser.save();
-    const { password, ...data } = result.toJSON();
-    res.status(200).send(data);
+    await newUser.save();
+
+    res.status(200).json({ message: "User registered successfully" });
   } catch (error) {
-    res.status(500).send({ message: error });
+    res.status(500).json({ message: "Registration failed" });
   }
 };
 
-// const makeAdmin = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const user = await Users.findById(id);
-//     user.isAdmin = true;
-//     await user.save();
-//     res.status(200).send({ message: "SUCCESS" });
-//   } catch (error) {
-//     res.status(500).send({ message: error });
-//   }
-// };
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-// const removeAdmin = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const user = await Users.findById(id);
-//     user.isAdmin = false;
-//     await user.save();
-//     res.status(200).send({ message: "SUCCESS" });
-//   } catch (error) {
-//     res.status(500).send({ message: error });
-//   }
-// };
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
 
-// const loginUser = async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const user = await Users.findOne({ email: email });
-//     if (!user) {
-//       return res.status(404).send({ message: "User not found" });
-//     }
-//     if (!(await bcrypt.compare(password, user.password))) {
-//       return res.status(400).send({ message: "Invalid credentials" });
-//     }
-//     const token = sign({ _id: user._id }, process.env.SECRET_KEY);
-//     res.cookie("jwt", token, {
-//       withCredentials: true,
-//       maxAge: 24 * 60 * 60 * 1000, // 1 day
-//     });
-//     res.status(200).send({ message: "SUCCESS" });
-//   } catch (error) {
-//     res.status(500).send({ message: error });
-//   }
-// };
+    // Compare passwords
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
 
-// const authUser = async (req, res) => {
-//   try {
-//     const cookie = req.cookies["jwt"];
-//     const claims = verify(cookie, process.env.SECRET_KEY);
-//     if (!claims) {
-//       return res.status(401).send({ message: "unauthenticated" });
-//     }
-//     const user = await Users.findOne({ _id: claims._id });
-//     const { password, ...data } = user.toJSON();
-//     res.status(200).send(data);
-//   } catch (error) {
-//     return res.status(401).send({ message: "unauthenticated" });
-//   }
-// };
+    // Create and send a JWT token in a cookie
+    const token = jwt.sign({ userId: user._id }, "secretKey");
+    res.cookie("token", token, { httpOnly: true });
 
-module.exports = { getAllUsers: getAllUsers, registerUser: registerUser };
+    res.status(200).json({ message: "Login successful" });
+  } catch (error) {
+    res.status(500).json({ message: "Login failed" });
+  }
+};
+
+const logout = (req, res) => {
+  res.clearCookie("token").status(200).json({ message: "Logout successful" });
+};
+
+const authenticate = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    // Verify and decode the token
+    const decoded = jwt.verify(token, "secretKey");
+    req.userId = decoded.userId;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Invalid token" });
+  }
+};
+
+const getUser = async (req, res) => {
+  try {
+    // Find the user by ID
+    const user = await User.findById(req.userId).select("-password");
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch user data" });
+  }
+};
+
+module.exports = { register:register, login:login, logout:logout, authenticate:authenticate, getUser:getUser };

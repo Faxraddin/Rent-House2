@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import MainRoot from "./roots/MainRoot.jsx";
-import '../src/styles/main.scss'
+import './styles/main.scss'
 
 import Home from "./pages/Home /Home.jsx";
 import AboutPage from './pages/About /About.jsx'
