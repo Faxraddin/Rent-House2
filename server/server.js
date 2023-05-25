@@ -8,7 +8,7 @@ const UserRouter = require("./routes/user.js");
 //App config
 const app = express();
 dotenv.config();
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json({ limit: "25mb" }));
 app.use(express.urlencoded({ limit: "25mb", extended: true }));
 mongoose.set("strictQuery", false);
