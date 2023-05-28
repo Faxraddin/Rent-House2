@@ -1,4 +1,4 @@
-const Users = require("../models/user.js");
+const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -7,13 +7,14 @@ dotenv.config();
 const { sign, verify } = jwt;
 
 const register = async (req, res) => {
-  try {
-    const { fullName,email, password } = req.body;
 
+  const { fullName, email, password } = req.body;
+
+  try {
     // Check if user with the provided email already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({  email });
     if (existingUser) {
-      return res.status(400).json({ message: "Email already registered" });
+      return res.status(409).json({ message: "Email already registered" });
     }
 
     // Hash the password
@@ -25,12 +26,18 @@ const register = async (req, res) => {
       email,
       password: hashedPassword,
     });
-    await newUser.save();
 
-    res.status(200).json({ message: "User registered successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Registration failed" });
+    const savedUser = await newUser.save();
+
+    if (savedUser) {
+      return res.status(200).json({ message: "User registered successfully" });
+    }
+  } catch (err) {
+    console.log("Error", err);
+    return res.status(500).json({ error: "Cannot register a user at the moment" });
   }
+  
+    
 };
 
 const login = async (req, res) => {
@@ -90,4 +97,13 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { register:register, login:login, logout:logout, authenticate:authenticate, getUser:getUser };
+const getAllUsers = async (_req, res) => {
+  try {
+    const data = await Users.find();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
+
+module.exports = { register:register, login:login, logout:logout, authenticate:authenticate, getUser:getUser, getAllUsers:getAllUsers };

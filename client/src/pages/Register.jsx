@@ -11,38 +11,27 @@ const validationSchema = yup.object({
 })
 
 export default function Register(){
-  const [isLoggedIn, setIsLoggedIn ] = useState(false)
-  const [success, setSuccess] = useState(null)
+  const [isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
 
   const onSubmit = async (values) => {
-    const { data } = values;
-  
-    try {
-      const response = await axios.post('http://127.0.0.1:3000/register', data);
-  
-      if (response && response.data) {
-        setSuccess(response.data.message);
-      }
-    } catch (err) {
-      if (err && err.response) {
-        console.log('Error', err);
-      }
+    const { ...data } = values;
+
+    const response = await axios
+      .post('http://127.0.0.1:8080/register', data)
+      .catch((err) => {
+        if (err && err.response) setError(err.response.data.message);
+        setSuccess(null);
+      });
+
+    if (response && response.data) {
+      setError(null);
+      setSuccess(response.data.message);
+      formik.resetForm();
     }
   };
 
-  //const onSubmit = async (values) => {
-  //  const {data} = values;
-
-  //  const response = await axios.post('http://localhost:8080/api/register', data).catch((err)=>{
-  //    if(err && err.response) {
-  //      console.log('Error',err)
-  //    }
-  //  });
-
-  //  if(response && response.data) {
-  //    setSuccess(response.data.message);
-  //  };
-  //}
   const formik = useFormik({ initialValues : { fullName: '', email: '',password: '' } ,
     validateOnBlur:true,
     onSubmit,
@@ -68,7 +57,9 @@ export default function Register(){
               </NavLink>
             </div>
 
-              <span>{success ? success : ''}</span>
+            {!error && <span>{success ? success : ''}</span>}
+            {!success && <span>{error ? error : ''}</span>}
+            
               <div>
                 <div className="form-group mt-3" style={{display:'flex',alignItems:'center',marginBottom:'.7vw',}}>
                     <label style={{width:'6.6vw',fontSize: '1vw',fontWeight: '600',color: 'rgb(34, 34, 34)'}}>Full Name</label>
@@ -115,7 +106,7 @@ export default function Register(){
               </div>
 
             <div className="d-grid gap-2 mt-3" style={{display:'flex',justifyContent:'center',}}>
-              <button type="submit"  className="btn btn-primary" style={{padding:'.7vw 1vw .7vw 1vw',background:'none',width:'30%',fontSize:'.9vw',border:'solid thin lightgrey',boxShadow:' rgb(0 0 0 / 16%) 1px 1px 10px',cursor:'pointer',}}>
+              <button type="submit" disabled={!formik.isValid} className="btn btn-primary" style={{padding:'.7vw 1vw .7vw 1vw',background:'none',width:'30%',fontSize:'.9vw',border:'solid thin lightgrey',boxShadow:' rgb(0 0 0 / 16%) 1px 1px 10px',cursor:'pointer',}}>
                 Submit
               </button>
             </div>
