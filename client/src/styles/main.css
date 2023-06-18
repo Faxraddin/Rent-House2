@@ -1,0 +1,247 @@
+.Apartment {
+  margin: 50px 0 50px 150px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 130px 0 100px 0;
+}
+.container1 .con {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+  left: 66px;
+}
+.container1 .con .filters {
+  background: #ece8e8;
+  border-radius: 28px;
+  width: 20%;
+  height: 500px;
+  padding: 15px;
+}
+.container1 .con .filters h3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 48px;
+  color: #000000;
+}
+.container1 .con .filters span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 42px;
+  color: #000000;
+}
+.container1 .con .filters .fil {
+  display: flex;
+  gap: 30px;
+}
+.container1 .con .filters .fil .qiy {
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 5px;
+}
+.container1 .con .boxes {
+  width: 70%;
+}
+
+.Home1 {
+  width: 75%;
+  display: flex;
+  padding: 4vw 0 4vw 0;
+  flex-direction: column;
+  margin-bottom: 4vw;
+}
+.Home1 h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 70px;
+  line-height: 129%;
+  font-size: 4vw;
+}
+.Home1 .search {
+  background: #FFFFFF;
+  border-radius: 20px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
+}
+.Home1 .search .choice {
+  height: 4vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+.Home1 .search .choice .choice-con {
+  padding-left: 1vw;
+  height: 100%;
+  width: 9vw;
+  display: flex;
+  align-items: center;
+}
+.Home1 .search .choice .choice-con .c {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.Home1 .search .choice .choice-con h3 {
+  font-size: 16px;
+}
+.Home1 .search button {
+  width: 214px;
+  background: #4F23FF;
+  font-size: 26px;
+  padding: 0.5vw 1.4vw 0.5vw 1.4vw;
+  border-radius: 30px;
+  border: thin solid;
+  color: white;
+  margin-right: 1vw;
+  height: 56px;
+}
+
+.place {
+  margin: 0;
+}
+
+.active1 {
+  color: #4F23FF;
+  background: #FFFFFF;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-size: 100% 100%;
+  z-index: 3;
+  position: absolute;
+}
+.Auth-form-container .Auth-form {
+  width: 42vw;
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 10px;
+  padding-top: 4.2vw;
+  padding-bottom: 4vw;
+  border-radius: 8px;
+  background-color: white;
+}
+.Auth-form-container .Auth-form .Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+.Auth-form-container .Auth-form .Auth-form-content .Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 2vw;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+.Auth-form-container .Auth-form .Auth-form-content .text-center {
+  margin-bottom: 1vw;
+  font-size: 1.3vw;
+}
+.Auth-form-container .Auth-form .Auth-form-content .error-field {
+  color: rgb(192, 49, 49);
+  font-size: 13px;
+  width: 190px;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-size: 100% 100%;
+  z-index: 3;
+  position: absolute;
+}
+.Auth-form-container .Auth-form {
+  width: 42vw;
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 10px;
+  padding-top: 4.2vw;
+  padding-bottom: 4vw;
+  border-radius: 8px;
+  background-color: white;
+}
+.Auth-form-container .Auth-form .Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+.Auth-form-container .Auth-form .Auth-form-content .Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 2vw;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+.authButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 33px;
+  width: 8vw;
+  background: #4F23FF;
+  border: solid thin purple;
+  padding: 0.5vw 0.8vw 0.5vw 0.8vw;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.update-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 10px;
+  border-radius: 8px;
+  position: absolute;
+  padding: 10px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-container h3 {
+  text-align: center;
+  font-size: 24px;
+}
+.update-container .updateInput-con {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-container .updateInput-con .updateInput {
+  width: 350px;
+  height: 30px;
+  border-radius: 8px;
+  border: solid purple thin;
+}
+.update-container .updateInput1 {
+  width: 350px;
+  height: 220px;
+  border-radius: 8px;
+  border: solid purple thin;
+}
+.update-container button {
+  background: none;
+  height: 50px;
+  border-radius: 8px;
+  border: solid purple thin;
+  color: purple;
+  font-size: 20px;
+  cursor: pointer;
+}/*# sourceMappingURL=main.css.map */

@@ -2,13 +2,14 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { use } = require("../routes/user");
 dotenv.config();
 
 const { sign, verify } = jwt;
 
 const register = async (req, res) => {
 
-  const { fullName, email, password } = req.body;
+  const { fullName, email, password,interest, region, work, about } = req.body;
 
   try {
     // Check if user with the provided email already exists
@@ -25,6 +26,10 @@ const register = async (req, res) => {
       fullName,
       email,
       password: hashedPassword,
+      interest:'', 
+      region:'', 
+      work:'', 
+      about:'',
     });
 
     const savedUser = await newUser.save();
@@ -37,7 +42,6 @@ const register = async (req, res) => {
     return res.status(500).json({ error: "Cannot register a user at the moment" });
   }
   
-    
 };
 
 const login = async (req, res) => {
@@ -48,62 +52,75 @@ const login = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
+    } else {
+      // Compare passwords
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      // Create and send a JWT token in a cookie
+      const token = jwt.sign({ userId: user._id }, "secretKey");
+      res.cookie("token", token, { httpOnly: true });
+
+      res.status(200).send({ message: "Login successful" ,user:user,token:token,id:user._id});
     }
 
-    // Compare passwords
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    // Create and send a JWT token in a cookie
-    const token = jwt.sign({ userId: user._id }, "secretKey");
-    res.cookie("token", token, { httpOnly: true });
-
-    res.status(200).json({ message: "Login successful" });
+    
   } catch (error) {
     res.status(500).json({ message: "Login failed" });
   }
 };
 
-const logout = (req, res) => {
-  res.clearCookie("token").status(200).json({ message: "Logout successful" });
-};
-
-const authenticate = (req, res, next) => {
-  const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
+const getAllUsers = async (req, res) => {
   try {
-    // Verify and decode the token
-    const decoded = jwt.verify(token, "secretKey");
-    req.userId = decoded.userId;
-    next();
-  } catch (error) {
-    res.status(401).json({ message: "Invalid token" });
+    const user = await User.find()
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).send({ message: "successful"});
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error' })
   }
 };
 
-const getUser = async (req, res) => {
+const update = async (req,res) => {
   try {
-    // Find the user by ID
-    const user = await User.findById(req.userId).select("-password");
+    const userId = req.params.id;
+    const { interest, region, work, about,age } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { interest, region, work, about,age },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch user data" });
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
   }
-};
+}
 
-const getAllUsers = async (_req, res) => {
+const getUserById = async (req, res) => {
   try {
-    const data = await Users.find();
-    res.status(200).send(data);
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(user);
   } catch (error) {
-    res.status(500).send({ message: error });
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
-module.exports = { register:register, login:login, logout:logout, authenticate:authenticate, getUser:getUser, getAllUsers:getAllUsers };
+
+module.exports = { register:register, login:login, getAllUsers:getAllUsers,update:update,getUserById:getUserById };

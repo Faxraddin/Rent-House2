@@ -1,8 +1,11 @@
 import React,{useState} from "react";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink,Link, json } from "react-router-dom";
 import { Formik, useFormik} from 'formik';
 import axios from 'axios';
 import * as yup from 'yup'
+
+import { useDispatch, useSelector } from "react-redux";
+import { addToken,isAuth } from "../store/userReducer";
 
 const validationSchema = yup.object({
   email: yup.string().email('Enter a email').required(),
@@ -12,22 +15,32 @@ const validationSchema = yup.object({
 export default function LogIn( ){
   const[error,setError] = useState(null);
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (values) => {
     setError(null);
-    const response = await axios.post('http://127.0.0.1:8080/login',values)
-    .catch((err)=>{
-      if (err && err.response) setError(err.response.values.message);
-    })
+     const response = await axios.post('http://127.0.0.1:8080/login',values)
+     .catch((err)=>{
+       if (err && err.response) setError(err.response.data.message);
+     })
 
-    if (response){
-      alert('Welcome back!')
-    }
+     if (response){
+       alert('Welcome back!')
+       console.log(response)
+       localStorage.setItem('id',response.data.id)
+       localStorage.setItem('token',response.data.token)
+       localStorage.setItem('user',response.data.user)
+       dispatch(addToken(response.data.token))
+       dispatch(isAuth())
+     }
+
   }
 
   const formik = useFormik({initialValues:{email:'',password:''},
-  validateOnBlur:true,
-  onSubmit,
-  validationSchema:validationSchema,})
+    validateOnBlur:true,
+    onSubmit,
+    validationSchema:validationSchema,
+  })
 
   return (
       <div className="Auth-form-container"> 
@@ -88,4 +101,4 @@ export default function LogIn( ){
         </form>
       </div>
     )
-}
+}; 

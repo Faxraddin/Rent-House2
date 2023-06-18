@@ -1,8 +1,16 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
 import "./Index.scss";
-
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { noAuth } from "../../store/userReducer";
 const Header = () => {
+  const [auth, setAuth] = useState(null);
+
+  const isAuth = useSelector(state => state.user.isAuth)
+  const dispatch = useDispatch();
+  
+
   return (
     <>
       <div
@@ -10,12 +18,9 @@ const Header = () => {
         style={{
           display: "flex",
           justifyContent: "center",
-          backgroun: "rgba(211, 211, 211, 0.2);",
         }}
       >
-        <div
-          className={"Navbar"}
-        >
+        <div className={"Navbar"}>
           <div
             style={{
               display: "flex",
@@ -50,24 +55,16 @@ const Header = () => {
               </ul>
             </div>
           </div>
-          <NavLink
-            to={"/login"}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: "33px",
-              width: "8vw",
-              background: "#4F23FF",
-              border: "solid thin purple",
-              padding: ".5vw .8vw .5vw .8vw",
-              fontSize: "20px",
-              textDecoration: "none",
-              color: "white",
-            }}
-          >
-            Sign Up
-          </NavLink>
+
+          {isAuth ? (
+            <Link className="authButton" to={"/"} onClick={dispatch(noAuth)}>
+              Logout
+            </Link>
+          ) : (
+            <Link to={"/login"} className="authButton">
+              Sign Up
+            </Link>
+          )}
         </div>
       </div>
     </>

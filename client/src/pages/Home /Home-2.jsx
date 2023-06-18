@@ -3,6 +3,7 @@ import Box from "../../components/HomeBox";
 import { NavLink } from "react-router-dom";
 
 export default function Home2() {
+
   return (
     <>
       <div
@@ -32,7 +33,7 @@ export default function Home2() {
               width: "100%",
             }}
           >
-            <ui
+            <ul
               style={{
                 display: "flex",
                 listStyle: "none",
@@ -43,7 +44,6 @@ export default function Home2() {
               }}
             >
               <NavLink
-                activeClassName="active1"
                 style={{
                   display: "flex",
                   background: "#302D3F",
@@ -61,7 +61,6 @@ export default function Home2() {
                 All
               </NavLink>
               <NavLink
-                activeClassName="active1"
                 style={{
                   display: "flex",
                   backgroundColor: "#F0F0F0",
@@ -79,7 +78,6 @@ export default function Home2() {
                 Building
               </NavLink>
               <NavLink
-                activeClassName="active1"
                 style={{
                   display: "flex",
                   backgroundColor: "#F0F0F0",
@@ -96,7 +94,7 @@ export default function Home2() {
               >
                 With Garden
               </NavLink>
-            </ui>
+            </ul>
             <button
               style={{
                 fontSize: "18px",

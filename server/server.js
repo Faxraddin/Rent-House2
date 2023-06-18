@@ -27,5 +27,5 @@ mongoose
   .catch((err) => console.log("Error in DB connection: " + err));
 
 app.listen(PORT, () =>
-  console.log(`Listening on http://localhost:${PORT}/allUsers`)
+  console.log(`Listening on http://localhost:${PORT}`)
 );

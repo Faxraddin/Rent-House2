@@ -1,0 +1,48 @@
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 130px 0 100px 0;
+}
+.container1 .con {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+  left: 66px;
+}
+.container1 .con .filters {
+  background: #ece8e8;
+  border-radius: 28px;
+  width: 20%;
+  height: 500px;
+  padding: 15px;
+}
+.container1 .con .filters h3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 48px;
+  color: #000000;
+}
+.container1 .con .filters span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 42px;
+  color: #000000;
+}
+.container1 .con .filters .fil {
+  display: flex;
+  gap: 30px;
+}
+.container1 .con .filters .fil .qiy {
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 5px;
+}
+.container1 .con .boxes {
+  width: 70%;
+}/*# sourceMappingURL=Forum.css.map */

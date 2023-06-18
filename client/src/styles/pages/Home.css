@@ -1,0 +1,68 @@
+.Home1 {
+  width: 75%;
+  display: flex;
+  padding: 4vw 0 4vw 0;
+  flex-direction: column;
+  margin-bottom: 4vw;
+}
+.Home1 h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 70px;
+  line-height: 129%;
+  font-size: 4vw;
+}
+.Home1 .search {
+  background: #FFFFFF;
+  border-radius: 20px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
+}
+.Home1 .search .choice {
+  height: 4vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+.Home1 .search .choice .choice-con {
+  padding-left: 1vw;
+  height: 100%;
+  width: 9vw;
+  display: flex;
+  align-items: center;
+}
+.Home1 .search .choice .choice-con .c {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.Home1 .search .choice .choice-con h3 {
+  font-size: 16px;
+}
+.Home1 .search button {
+  width: 214px;
+  background: #4F23FF;
+  font-size: 26px;
+  padding: 0.5vw 1.4vw 0.5vw 1.4vw;
+  border-radius: 30px;
+  border: thin solid;
+  color: white;
+  margin-right: 1vw;
+  height: 56px;
+}
+
+.place {
+  margin: 0;
+}
+
+.active1 {
+  color: #4F23FF;
+  background: #FFFFFF;
+}/*# sourceMappingURL=Home.css.map */

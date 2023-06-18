@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {NavLink} from "react-router-dom"
+import {NavLink, json} from "react-router-dom"
 import { Formik,useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup'
@@ -11,7 +11,6 @@ const validationSchema = yup.object({
 })
 
 export default function Register(){
-  const [isLoggedIn, setIsLoggedIn ] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
@@ -24,6 +23,7 @@ export default function Register(){
         if (err && err.response) setError(err.response.data.message);
         setSuccess(null);
       });
+
 
     if (response && response.data) {
       setError(null);
@@ -40,12 +40,6 @@ export default function Register(){
 
   return (
     <div className="Auth-form-container">
-      {isLoggedIn ? (
-        <div>
-          <h1>Welcome, User!</h1>
-          <button>Logout</button>
-        </div>
-      ) : (
       <div className="Auth-form">
         <form onSubmit={formik.handleSubmit} >
           <div className="Auth-form-content">
@@ -112,7 +106,7 @@ export default function Register(){
             </div>
           </div>
         </form>
-      </div>)}
+      </div>
       
     </div>
     )
