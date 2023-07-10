@@ -14,6 +14,15 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const announcementSchema = new mongoose.Schema(
+  {
+    description: { type: String, },
+  },
+  { timestamps: true }
+);
+
+const announcementModel = mongoose.model("Announcement", announcementSchema);
+
 const userModel = mongoose.model("Users", userSchema);
 
-module.exports = userModel
+module.exports = {userModel:userModel,announcementModel:announcementModel}

@@ -5,7 +5,7 @@ const userReducer = createSlice({
     initialState:{
         user:'',
         token:'',
-        isAuth:false,
+        isAuth: localStorage.getItem('isAuth') === 'true',
     },
     reducers:{
         addToken:(state,action) => {
@@ -14,14 +14,11 @@ const userReducer = createSlice({
         addUser:(state,action) => {
             state.user = localStorage.getItem('user')
         },
-        isAuth:(state,action) => {
-            state.isAuth = true
+        setIsAuth:(state,action) => {
+            state.isAuth = action.payload
         },
-        noAuth:(state,action) => {
-            state.isAuth = false
-        }
     },
 })
 
 export default userReducer.reducer
-export const {addToken,addUser,isAuth,noAuth} = userReducer.actions
+export const {addToken,addUser,setIsAuth} = userReducer.actions

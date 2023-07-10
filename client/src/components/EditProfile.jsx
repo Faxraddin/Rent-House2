@@ -1,14 +1,19 @@
 import React,{useEffect,useState} from "react";
 import axios from "axios";
 
+import { useDispatch,useSelector} from "react-redux";
+import { setAbout,setAge,setRegion,setWork,setInterest } from "../store/profileReducer";
+
 export default function EditProfile(){
   const userId = localStorage.getItem('id');
+  const dispatch = useDispatch();
 
   const [age, setAge] = useState('');
   const [interest, setInterest] = useState('');
   const [region, setRegion] = useState('');
   const [work, setWork] = useState('');
   const [about, setAbout] = useState('');
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -42,7 +47,7 @@ export default function EditProfile(){
       });
 
       console.log(response.data); // Updated user data
-      window.location.reload();
+      window.location.reload()
 
       // Handle success message or UI update
     } catch (error) {

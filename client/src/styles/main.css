@@ -191,6 +191,105 @@
   font-weight: 800;
 }
 
+.container-op {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+}
+.container-op .container-opp {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10vw;
+  gap: 1vw;
+  background-color: white;
+}
+.container-op .container-opp .f-s {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  position: relative;
+  top: -3vw;
+}
+.container-op .container-opp .s-s {
+  width: 80%;
+  padding-bottom: 3vw;
+  display: flex;
+  justify-content: space-between;
+}
+.container-op .container-opp .s-s .s-s-input {
+  background: none;
+  outline: none;
+  border: none;
+}
+.container-op .container-opp .s-s .textarea-a {
+  border: none;
+  background: none;
+  outline: none;
+  box-sizing: border-box;
+  width: auto;
+}
+.container-op .container-opp button {
+  background: #4F23FF;
+  height: 100%;
+  padding: 10px 30px 10px 30px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.container-h {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-h .container-con {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vw 0 4vw 0;
+  flex-direction: column;
+  gap: 3vw;
+}
+.container-h .container-con .filter-wrapper {
+  display: flex;
+  list-style: none;
+  gap: 4vw;
+  align-items: center;
+  font-size: 1vw;
+  color: white;
+}
+.container-h .container-con .house-option {
+  display: flex;
+  background-color: #F0F0F0;
+  border-radius: 50px;
+  width: 200px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 0.7vw 0vw 0.7vw;
+  font-size: 20px;
+  text-decoration: none;
+}
+.container-h .container-con .page-switcher {
+  display: flex;
+  color: white;
+  background-color: black;
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
 .authButton {
   display: flex;
   justify-content: center;
@@ -215,28 +314,35 @@
   flex-direction: column;
   gap: 10px;
 }
-.update-container h3 {
+.update-container .upd {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  justify-content: center;
+  align-items: center;
+}
+.update-container .upd h3 {
   text-align: center;
   font-size: 24px;
 }
-.update-container .updateInput-con {
+.update-container .upd .updateInput-con {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 13px;
 }
-.update-container .updateInput-con .updateInput {
+.update-container .upd .updateInput-con .updateInput {
   width: 350px;
   height: 30px;
   border-radius: 8px;
   border: solid purple thin;
 }
-.update-container .updateInput1 {
+.update-container .upd .updateInput1 {
   width: 350px;
   height: 220px;
   border-radius: 8px;
   border: solid purple thin;
 }
-.update-container button {
+.update-container .upd button {
   background: none;
   height: 50px;
   border-radius: 8px;
@@ -244,4 +350,6 @@
   color: purple;
   font-size: 20px;
   cursor: pointer;
+  width: 70%;
+  border-radius: 20px;
 }/*# sourceMappingURL=main.css.map */

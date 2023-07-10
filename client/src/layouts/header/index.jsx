@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./Index.scss";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { noAuth } from "../../store/userReducer";
-const Header = () => {
-  const [auth, setAuth] = useState(null);
 
-  const isAuth = useSelector(state => state.user.isAuth)
+import { useDispatch, useSelector } from "react-redux";
+import { setIsAuth } from "../../store/userReducer";
+import { clearUserData } from "../../store/profileReducer";
+
+const Header = () => {
+
+  const loggedIn = useSelector(state => state.user.isAuth);
   const dispatch = useDispatch();
-  
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuth');
+    dispatch(setIsAuth(false)); // Update isAuth state in Redux store
+    dispatch(clearUserData())
+
+    window.location.reload();
+  }
 
   return (
     <>
@@ -56,15 +64,16 @@ const Header = () => {
             </div>
           </div>
 
-          {isAuth ? (
-            <Link className="authButton" to={"/"} onClick={dispatch(noAuth)}>
+          {loggedIn ? (
+            <Link className="authButton" to={"/"} onClick={handleLogout}>
               Logout
-            </Link>
-          ) : (
-            <Link to={"/login"} className="authButton">
-              Sign Up
-            </Link>
-          )}
+              </Link>
+            ) : (
+              <Link to={"/login"} className="authButton">
+                Sign Up
+              </Link>
+              )
+          }
         </div>
       </div>
     </>

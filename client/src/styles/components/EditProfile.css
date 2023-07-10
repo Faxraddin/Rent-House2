@@ -8,28 +8,35 @@
   flex-direction: column;
   gap: 10px;
 }
-.update-container h3 {
+.update-container .upd {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  justify-content: center;
+  align-items: center;
+}
+.update-container .upd h3 {
   text-align: center;
   font-size: 24px;
 }
-.update-container .updateInput-con {
+.update-container .upd .updateInput-con {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 13px;
 }
-.update-container .updateInput-con .updateInput {
+.update-container .upd .updateInput-con .updateInput {
   width: 350px;
   height: 30px;
   border-radius: 8px;
   border: solid purple thin;
 }
-.update-container .updateInput1 {
+.update-container .upd .updateInput1 {
   width: 350px;
   height: 220px;
   border-radius: 8px;
   border: solid purple thin;
 }
-.update-container button {
+.update-container .upd button {
   background: none;
   height: 50px;
   border-radius: 8px;
@@ -37,4 +44,6 @@
   color: purple;
   font-size: 20px;
   cursor: pointer;
+  width: 70%;
+  border-radius: 20px;
 }/*# sourceMappingURL=EditProfile.css.map */

@@ -1,31 +1,78 @@
-import React from "react";
+import React,{useState} from "react";
 import Box from "../../components/HomeBox";
 import { NavLink } from "react-router-dom";
 
+//const [searchQuery, setSearchQuery] = useState('');
+  //const [searchResults, setSearchResults] = useState([]);
+
+  //const data = [
+    //{ id: 1, name: 'Component A' },
+    //{ id: 2, name: 'Component B' },
+   // { id: 3, name: 'Component C' },
+    // ... more components
+  //];
+
+  //const handleSearch = () => {
+    //const filteredData = data.filter((component) =>
+      //component.name.toLowerCase().includes(searchQuery.toLowerCase())
+  //  );
+  //  setSearchResults(filteredData);
+  //};
+
+
 export default function Home2() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6); // Number of items to display per page
+
+  const [selectedContinent, setSelectedContinent] = useState('');
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
+  const handleContinentClick = (event) => {
+    setSelectedContinent(event);
+    filterCountries(event);
+    filterCountries
+  };
+
+  const dataGarden = [
+    'ora','bura','tam','tut'
+  ]
+  const dataBuilding = [
+    'narimanov 10A','azadlig 345B','iceriseher A'
+  ]
+
+  const filterCountries = (e) => {
+    if (e === 'With Garden') {
+      setFilteredCountries(dataGarden);
+    } ;
+    if (e === 'Building') {
+      setFilteredCountries(dataBuilding);
+    }; 
+    if (e === ''){
+      setFilteredCountries(dataBuilding.concat(dataGarden));
+    }
+    setCurrentPage(1); 
+  };
+
+   // Calculate the total number of pages
+   const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
+
+   // Get the current items to display based on pagination
+   const indexOfLastItem = currentPage * itemsPerPage;
+   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+   const currentItems = filteredCountries.slice(
+     indexOfFirstItem,
+     indexOfLastItem
+   );
+ 
+   // Change the current page
+   const paginate = (pageNumber) => {
+     setCurrentPage(pageNumber);
+   };
 
   return (
     <>
-      <div
-        className="container"
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "4vw 0 4vw 0",
-            flexDirection: "column",
-            gap: "3vw",
-          }}
-        >
+      <div className="container-h">
+        <div className="container-con">
           <div
             style={{
               display: "flex",
@@ -33,68 +80,20 @@ export default function Home2() {
               width: "100%",
             }}
           >
-            <ul
-              style={{
-                display: "flex",
-                listStyle: "none",
-                gap: "4vw",
-                alignItems: "center",
-                fontSize: "1vw",
-                color: "white",
-              }}
-            >
-              <NavLink
-                style={{
-                  display: "flex",
-                  background: "#302D3F",
-                  borderRadius: "50px",
-                  width: "200px",
-                  height: "30px",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  padding: "0 .7vw 0vw .7vw",
-                  fontSize: "20px",
-                  textDecoration: "none",
-                }}
-              >
+            <ul className="filter-wrapper">
+              <NavLink onClick={() => handleContinentClick('')}className={'house-option'}>
                 All
               </NavLink>
-              <NavLink
-                style={{
-                  display: "flex",
-                  backgroundColor: "#F0F0F0",
-                  borderRadius: "50px",
-                  width: "200px",
-                  height: "30px",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  padding: "0 .7vw 0vw .7vw",
-                  fontSize: "20px",
-                  textDecoration: "none",
-                }}
-              >
+
+              <NavLink onClick={() => handleContinentClick('Building')} className={'house-option'}>
                 Building
               </NavLink>
-              <NavLink
-                style={{
-                  display: "flex",
-                  backgroundColor: "#F0F0F0",
-                  borderRadius: "50px",
-                  width: "200px",
-                  height: "30px",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  padding: "0 .7vw 0vw .7vw",
-                  fontSize: "20px",
-                  textDecoration: "none",
-                }}
-              >
+
+              <NavLink onClick={() => handleContinentClick('With Garden')} className={'house-option'}>
                 With Garden
               </NavLink>
             </ul>
+
             <button
               style={{
                 fontSize: "18px",
@@ -109,86 +108,22 @@ export default function Home2() {
             </button>
           </div>
           <div style={{ width: "100%", gap: "10%" }}>
-            <Box />
-            <Box />
-            <Box />
-            <Box />
-            <Box />
-            <Box />
-            <Box />
-            <Box />
+            
+              {currentItems.map((placeOfApartment,index) => (
+                <Box key={index} place={placeOfApartment}></Box>
+              ))}
+
           </div>
           <ul style={{ display: "flex", listStyle: "none", gap: "1vw" }}>
-            <li
-              style={{
-                display: "flex",
-                color: "white",
-                backgroundColor: "black",
-                width: "2.5vw",
-                height: "2.5vw",
-                borderRadius: "20px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              1
-            </li>
-            <li
-              style={{
-                display: "flex",
-                color: "white",
-                backgroundColor: "grey",
-                width: "2.5vw",
-                height: "2.5vw",
-                borderRadius: "20px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              2
-            </li>
-            <li
-              style={{
-                display: "flex",
-                color: "white",
-                backgroundColor: "grey",
-                width: "2.5vw",
-                height: "2.5vw",
-                borderRadius: "20px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              3
-            </li>
-            <li
-              style={{
-                display: "flex",
-                color: "white",
-                backgroundColor: "grey",
-                width: "2.5vw",
-                height: "2.5vw",
-                borderRadius: "20px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              4
-            </li>
-            <li
-              style={{
-                display: "flex",
-                color: "white",
-                backgroundColor: "grey",
-                width: "2.5vw",
-                height: "2.5vw",
-                borderRadius: "20px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              5
-            </li>
+            {Array.from({ length: totalPages }, (_, index) => (
+                <li
+                  key={index}
+                  className={`page-switcher ${currentPage === index + 1 ? "active" : ""}`}
+                  onClick={() => paginate(index + 1)}
+                >
+                  {index + 1}
+                </li>
+            ))}
           </ul>
           <div></div>
         </div>

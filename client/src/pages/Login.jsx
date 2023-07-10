@@ -1,11 +1,11 @@
 import React,{useState} from "react";
-import { NavLink,Link, json } from "react-router-dom";
-import { Formik, useFormik} from 'formik';
+import { NavLink,Link, useNavigate } from "react-router-dom";
+import { useFormik} from 'formik';
 import axios from 'axios';
 import * as yup from 'yup'
 
-import { useDispatch, useSelector } from "react-redux";
-import { addToken,isAuth } from "../store/userReducer";
+import { useDispatch} from "react-redux";
+import { setIsAuth } from "../store/userReducer";
 
 const validationSchema = yup.object({
   email: yup.string().email('Enter a email').required(),
@@ -15,6 +15,7 @@ const validationSchema = yup.object({
 export default function LogIn( ){
   const[error,setError] = useState(null);
 
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
@@ -25,13 +26,16 @@ export default function LogIn( ){
      })
 
      if (response){
-       alert('Welcome back!')
-       console.log(response)
-       localStorage.setItem('id',response.data.id)
-       localStorage.setItem('token',response.data.token)
-       localStorage.setItem('user',response.data.user)
-       dispatch(addToken(response.data.token))
-       dispatch(isAuth())
+       alert(`Welcome back!`);
+       console.log(response);
+
+       localStorage.setItem('id',response.data.id);
+       localStorage.setItem('token',response.data.token);
+       localStorage.setItem('user',response.data.user.fullName);
+       localStorage.setItem('isAuth', true);
+       dispatch(setIsAuth(true)); // Update isAuth state in Redux store
+       //dispatch(addToken(response.data.token));
+       navigate('/')
      }
 
   }
