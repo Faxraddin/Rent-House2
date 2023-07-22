@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema(
 
 const announcementSchema = new mongoose.Schema(
   {
-    description: { type: String, },
+    description: { type: String, required: true},
+    userName: { type: String, required: true },
   },
   { timestamps: true }
 );

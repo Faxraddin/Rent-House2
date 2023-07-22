@@ -2,24 +2,6 @@ import React,{useState} from "react";
 import Box from "../../components/HomeBox";
 import { NavLink } from "react-router-dom";
 
-//const [searchQuery, setSearchQuery] = useState('');
-  //const [searchResults, setSearchResults] = useState([]);
-
-  //const data = [
-    //{ id: 1, name: 'Component A' },
-    //{ id: 2, name: 'Component B' },
-   // { id: 3, name: 'Component C' },
-    // ... more components
-  //];
-
-  //const handleSearch = () => {
-    //const filteredData = data.filter((component) =>
-      //component.name.toLowerCase().includes(searchQuery.toLowerCase())
-  //  );
-  //  setSearchResults(filteredData);
-  //};
-
-
 export default function Home2() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6); // Number of items to display per page
@@ -34,15 +16,25 @@ export default function Home2() {
   };
 
   const dataGarden = [
-    'ora','bura','tam','tut'
-  ]
+    
+  ];
+
   const dataBuilding = [
-    'narimanov 10A','azadlig 345B','iceriseher A'
+    {name:'Abseron',src:'/Abseron.JPG'},
+    {name:'Xetai',src:'/Xetai.JPG'},
+    {name:'Bineqedi',src:'/Bineqedi.png'},
+    {name:'Nesimi',src:'/28 May.JPG'},
+    {name:'Sebail',src:'/Sebai.JPG'},
+    {name:'Yasamal',src:'/Xetai.JPG'},
+    {name:'Narimanov',src:'/Xetai.JPG'},
+    {name:'Azadlig',src:'/Bineqedi.JPG'},
+    {name:'20 yanvar',src:'/20 yanvar.JPG'},
+    {name:'28 May',src:'/28 May.JPG'}
   ]
 
   const filterCountries = (e) => {
     if (e === 'With Garden') {
-      setFilteredCountries(dataGarden);
+      setFilteredCountries(dataGarden)
     } ;
     if (e === 'Building') {
       setFilteredCountries(dataBuilding);
@@ -107,10 +99,11 @@ export default function Home2() {
               Search
             </button>
           </div>
+
           <div style={{ width: "100%", gap: "10%" }}>
             
               {currentItems.map((placeOfApartment,index) => (
-                <Box key={index} place={placeOfApartment}></Box>
+                <Box  key={index} place={placeOfApartment.name} src={placeOfApartment.src}></Box>
               ))}
 
           </div>

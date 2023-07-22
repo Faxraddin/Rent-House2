@@ -3,7 +3,7 @@ import React from "react";
 export default function Home1(){
     return(
         <>
-            <div className="container" style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',backgroundColor:'lightgray'}}>
+            <div className="containerH">
                 <div className={'Home1'}>
 
                     <div style={{color:'white',fontSize:'70px'}}>

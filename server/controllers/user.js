@@ -126,9 +126,9 @@ const getUserById = async (req, res) => {
 
 const makeAnnouncement = async (req, res) => {
   try {
-    const { description} = req.body;
-    console.log(description);
-    const newAnnouncement = new announcementModel({description});
+    const { description,userName} = req.body;
+    console.log(description,userName);
+    const newAnnouncement = new announcementModel({ description,userName});
     await newAnnouncement.save();
     res.status(201).json({ message: "Announcement created successfully"});
   } catch (error) {

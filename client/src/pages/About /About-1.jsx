@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 
 export default function About1() {
   
@@ -119,9 +119,9 @@ export default function About1() {
                   borderRadius: "20px",
                 }}
               >
-                <h1>150azn</h1>
-                <span>1 yataq</span>
-                <span>unvan</span>
+                <h1>{useSelector(state => state.about.price)}azn</h1>
+                <span>{useSelector(state => state.about.rooms)}</span>
+                <span>{useSelector(state => state.about.address)}</span>
                 <span>taqdim</span>
                 <button
                   style={{
